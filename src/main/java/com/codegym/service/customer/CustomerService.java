@@ -30,4 +30,14 @@ public class CustomerService implements ICustomerService {
     public void remove(Long id) {
         customerRepository.deleteById(id);
     }
+
+    @Override
+    public Optional<Customer> findById(Long id) {
+        return customerRepository.findById(id);
+    }
+
+    @Override
+    public Object findAll() {
+        return customerRepository.findAll();;
+    }
 }
