@@ -38,6 +38,6 @@ public class CustomerService implements ICustomerService {
 
     @Override
     public Object findAll() {
-        return customerRepository.findAll();;
+        return customerRepository.findAll();
     }
 }
