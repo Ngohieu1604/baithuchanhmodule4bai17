@@ -1,60 +1,34 @@
-<!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Edit customer</title>
+    <title>Edit customers</title>
 </head>
-
-<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-
-<script>
-    function editCustomer(){
-        let id = $('#id').val();
-        let firstName = $('#firstName').val();
-        let lastName = $('#lastName').val();
-        let newCustomer = {
-            firstName: firstName,
-            lastName: lastName
-        }
-
-
-        $.ajax({
-            headers:{
-                'Accept': 'application/json',
-                'Content-Type': 'application/json'
-            },
-            type: "PUT",
-            data: JSON.stringify(newCustomer),
-            url: "http://localhost:8080/customers/edit/"+id,
-            success: alert("ok")
-        })
-        event.preventDefault();
-
-
-    }
-</script>
 <body>
-<h1>Edit customer</h1>
+<h1>Edit product</h1>
 <p>
-    <a href="/customers/list">Customer list</a>
+    <a href="/customers">Products list</a>
 </p>
 <th:block th:if="${message}">
     <p th:text="${message}"></p>
 </th:block>
-<form>
-    <input th:type="hidden" name="id" th:field="*{customer.id}">
+<form th:action="@{/edit-customer}" th:object="${customer}" method="post">
+    <input th:type="hidden" name="id" th:field="*{id}">
     <table>
         <tr>
-            <td>First name:</td>
-            <td><input type="text" th:field="*{customer.firstName}" placeholder="First name" id="firstName" /></td>
+            <td>Name:</td>
+            <td><input type="text" th:field="*{name}"/></td>
         </tr>
         <tr>
-            <td>Last name:</td>
-            <td><input type="text" th:field="*{customer.lastName}"  placeholder="Last name" id="lastName" /></td>
+            <td>Price:</td>
+            <td><input type="text" th:field="*{price}"/></td>
+        </tr>
+        <tr>
+            <td>Description:</td>
+            <td><input type="text" th:field="*{description}"/></td>
         </tr>
         <tr>
             <td></td>
-            <td><input type="submit" onclick="editCustomer()" value="Update customer"></td>
+            <td><input type="submit" value="Update customer"></td>
         </tr>
     </table>
 </form>

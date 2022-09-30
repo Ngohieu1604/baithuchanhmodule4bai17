@@ -1,5 +1,7 @@
 package com.codegym.service;
 
+import com.codegym.model.Customer;
+
 import java.util.Optional;
 
 public interface IGeneralService<T>{
@@ -7,7 +9,7 @@ public interface IGeneralService<T>{
 
     Optional<T> finById(Long id);
 
-    void save(T t);
+    Customer save(T t);
 
     void remove(Long id);
 }

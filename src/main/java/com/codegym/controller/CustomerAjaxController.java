@@ -12,6 +12,7 @@ import java.util.List;
 import java.util.Optional;
 @RestController
 @RequestMapping("/api/customers")
+@CrossOrigin("*")
 public class CustomerAjaxController {
     @Autowired
     private ICustomerService customerService;

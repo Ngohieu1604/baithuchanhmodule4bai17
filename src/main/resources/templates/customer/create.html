@@ -1,55 +1,33 @@
-<!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
+    <meta charSet="UTF-8">
     <title>Create customer</title>
 </head>
-<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-
-<script>
-    function addNewCustomer(){
-        let firstName = $('#firstName').val();
-        let lastName = $('#lastName').val();
-        let newCustomer = {
-            firstName: firstName,
-            lastName: lastName
-        }
-
-        $.ajax({
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json'
-            },
-            type:"POST",
-            data: JSON.stringify(newCustomer),
-            url: "http://localhost:8080/customers",
-            success: alert("oke")
-        })
-        event.preventDefault();
-
-    }
-</script>
 <body>
-<h1>Create customer</h1>
+<h1>Create product</h1>
 <p>
-    <a href="/customers/list">Customer list</a>
+    <a href="/customers">Product list</a>
 </p>
 <th:block th:if="${message}">
     <p th:text="${message}"></p>
 </th:block>
-<form id="add-customer">
+<form th:action="@{/create-customer}" th:object="${customer}" method="post">
     <table>
         <tr>
-            <td>First name:</td>
-            <td><input type="text" id="firstName"  placeholder="firstName"/></td>
+            <td>Name:</td>
+            <td><input type="text" th:field="*{name}"/></td>
         </tr>
         <tr>
-            <td>Last name:</td>
-            <td><input type="text"  id="lastName" placeholder="lastName" /></td>
+            <td>Price:</td>
+            <td><input type="text" th:field="*{price}"/></td>
+        </tr>
+        <tr>
+            <td>Description:</td>
+            <td><input type="text" th:field="*{description}"/></td>
         </tr>
         <tr>
             <td></td>
-            <td><input type="submit" onclick="addNewCustomer()"  value="Create Customer"></td>
+            <td><input type="submit" value="Create customer"></td>
         </tr>
     </table>
 </form>

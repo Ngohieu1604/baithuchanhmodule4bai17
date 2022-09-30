@@ -1,44 +1,32 @@
-<!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <title>Delete customer</title>
+    <meta charSet="UTF-8">
+    <title>Delete product</title>
 </head>
-<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-
-<script>
-    function deleteCustomer(){
-        let id = $('#id').val();
-        $.ajax({
-            type: "DELETE",
-            //tên API
-            url: `/customers/delete/`+id,
-            success: alert("oke")
-
-        });
-        event.preventDefault();
-    }
-</script>
 <body>
-<h1>Delete customer</h1>
+<h1>Delete product</h1>
 <h2>Are you sure?</h2>
 <p>
-    <a href="/customers/list">Customer list</a>
+    <a href="/customers">Products list</a>
 </p>
-<form>
-    <input th:type="hidden" id="id" th:field="*{customer.id}">
+<form th:action="@{/delete-product}" th:object="${product}" method="post">
+    <input th:type="hidden" name="id" th:field="*{id}">
     <table>
         <tr>
-            <td>First name:</td>
-            <td><input type="text" th:field="*{customer.firstName}" placeholder="First name" id="firstName" /></td>
+            <td>Name:</td>
+            <td th:text="${customer.name}"></td>
         </tr>
         <tr>
-            <td>Last name:</td>
-            <td><input type="text" th:field="*{customer.lastName}" placeholder="Last name" id="lastName" /></td>
+            <td>Price:</td>
+            <td th:text="${customer.price}"></td>
+        </tr>
+        <tr>
+            <td>Description:</td>
+            <td th:text="${customer.description}"></td>
         </tr>
         <tr>
             <td></td>
-            <td><input type="submit" onclick="deleteCustomer()" value="Delete customer"></td>
+            <td><input type="submit" value="Delete customer"></td>
         </tr>
     </table>
 </form>

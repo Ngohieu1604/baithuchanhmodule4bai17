@@ -3,26 +3,29 @@ package com.codegym.model;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "customer")
-
+@Table(name = "customers")
 public class Customer {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    private String firstName;
-    private String lastName;
+    private String name;
+    private double price;
+    private String description;
 
-    public Customer() {
+    public Customer () {
     }
 
-    public Customer(String firstName, String lastName) {
-        this.firstName = firstName;
-        this.lastName = lastName;
+    public Customer (String name, double price, String description) {
+        this.name = name;
+        this.price = price;
+        this.description = description;
     }
 
-    @Override
-    public String toString() {
-        return String.format("Customer[id=%d, firstName='%s', lastName='%s']", id, firstName, lastName);
+    public Customer (Long id, String name, double price, String description) {
+        this.id = id;
+        this.name = name;
+        this.price = price;
+        this.description = description;
     }
 
     public Long getId() {
@@ -33,19 +36,37 @@ public class Customer {
         this.id = id;
     }
 
-    public String getFirstName() {
-        return firstName;
+    public String getName() {
+        return name;
     }
 
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public String getLastName() {
-        return lastName;
+    public double getPrice() {
+        return price;
     }
 
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
+    public void setPrice(double price) {
+        this.price = price;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    @Override
+    public String toString() {
+        return "Customer{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", price=" + price +
+                ", description='" + description + '\'' +
+                '}';
     }
 }
