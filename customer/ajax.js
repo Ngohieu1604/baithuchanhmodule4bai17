@@ -4,7 +4,7 @@ function showAllClass() {
         //loai cua request: GET, POST, PUT, ....
         type: "GET",
         //duong dan cua API
-        url: "http://localhost:8083/api/products",
+        url: "http://localhost:8083/api/customers",
         //xu ly luc thanh cong
         success: function (data) {
             console.log(data)
