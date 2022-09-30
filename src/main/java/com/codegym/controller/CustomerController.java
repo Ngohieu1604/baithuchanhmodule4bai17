@@ -37,14 +37,14 @@ public class CustomerController {
     @GetMapping("/customers")
     public ModelAndView listCustomers() {
         ModelAndView modelAndView = new ModelAndView("/customer/list");
-        modelAndView.addObject("customers", customerService.findAll());
+        modelAndView.addObject("customers", customerService.finAll());
         return modelAndView;
     }
 
 
     @GetMapping("/edit-customer/{id}")
     public ModelAndView showEditForm(@PathVariable Long id) {
-        Optional<Customer> customer = customerService.findById(id);
+        Optional<Customer> customer = customerService.finById(id);
         if (customer.isPresent()) {
             ModelAndView modelAndView = new ModelAndView("/customer/edit");
             modelAndView.addObject("customer", customer.get());
@@ -65,7 +65,7 @@ public class CustomerController {
 
     @GetMapping("/delete-customer/{id}")
     public ModelAndView showDeleteForm(@PathVariable Long id) {
-        Optional<Customer> customer = customerService.findById(id);
+        Optional<Customer> customer = customerService.finById(id);
         if (customer.isPresent()) {
             ModelAndView modelAndView = new ModelAndView("/customer/delete");
             modelAndView.addObject("customer", customer.get());

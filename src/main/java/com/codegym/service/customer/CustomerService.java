@@ -10,19 +10,10 @@ import org.springframework.stereotype.Service;
 import java.util.Optional;
 
 @Service
-public class CustomerService implements ICustomerService{
+public class CustomerService implements ICustomerService {
     @Autowired
     private ICustomerRepository customerRepository;
 
-    @Override
-    public Iterable<Customer> findAll() {
-        return customerRepository.findAll();
-    }
-
-    @Override
-    public Optional<Customer> findById(Long id) {
-        return customerRepository.findById(id);
-    }
 
     @Override
     public Iterable<Customer> finAll() {
@@ -31,7 +22,7 @@ public class CustomerService implements ICustomerService{
 
     @Override
     public Optional<Customer> finById(Long id) {
-        return Optional.empty();
+        return customerRepository.findById(id);
     }
 
     @Override
@@ -43,14 +34,8 @@ public class CustomerService implements ICustomerService{
     public void remove(Long id) {
         customerRepository.deleteById(id);
     }
-
-    @Override
-    public Page<Customer> findAll(Pageable pageable) {
-        return customerRepository.findAll(pageable);
-    }
-
     @Override
     public Page<Customer> findAllByName(String name, Pageable pageable) {
-        return customerRepository.findAllByName(name, pageable);
+        return customerRepository.findAllByName(name,pageable);
     }
 }
